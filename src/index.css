@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background-color: #f5ba13;
+  height: 5rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  padding: 0 2%;
+}
+
+.header h1 {
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.header-item {
+  display: flex;
+  width: 9rem;
+  justify-content: space-between;
+}
+
+.header-item h5 {
+  cursor: pointer;
+}
+
+.create-area {
+  position: relative;
+  width: 38.5%;
+  margin: 3% auto 2% auto;
+  padding: 1.5%;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+
+.create-area input,
+.create-area textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+
+.create-area button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.8rem;
+  height: 2.8rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
+.note {
+  width: 21%;
+  padding: 1%;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  margin: 2%;
+  float: left;
+}
+
+.note h1 {
+  font-size: 1.3em;
+  margin-bottom: 6px;
+}
+
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.note button {
+  float: right;
+  margin-left: 5%;
+  color: #f5ba13;
+  border: none;
+  cursor: pointer;
+  padding: 1.5%;
+  border-radius: 0.3rem;
+  font-size: small;
+}
