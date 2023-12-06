@@ -1,10 +1,10 @@
 import React from "react";
 
-function Note() {
+function Note(props) {
     return (
-        <div class="note">
-        <h1>This is title</h1>
-        <p>Hello!! how are you? This is content.</p>
+        <div class="note col-sm-3" style={{width:'23%', maxWidth:'100%'}}>
+        <h1>{props.t}</h1>
+        <p>{props.c}</p>
         <button>Update</button>
         <button>Delete</button>
     </div>
