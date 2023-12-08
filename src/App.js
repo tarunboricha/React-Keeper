@@ -5,6 +5,8 @@ import Note from "./components/Note";
 import Footer from "./components/Footer";
 
 function App() {
+
+  const name =0;
   return (
     <div className="App">
       <Header></Header>
