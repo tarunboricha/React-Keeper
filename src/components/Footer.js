@@ -1,8 +1,8 @@
 import React from "react";
 
-function Footer(props){
+function Footer(){
     return(
-        <div className="footer" style={{bottom: props.notes.length === 0 ? '0' : '-10vh'}}>
+        <div className="footer" style={{bottom: '0'}}>
             Footer
         </div>
     );
