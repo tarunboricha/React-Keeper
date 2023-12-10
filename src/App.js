@@ -5,40 +5,6 @@ import Note from "./components/Note";
 import Footer from "./components/Footer";
 
 function App() {
-  const [note, setNote] = useState({
-    id: undefined,
-    title: "",
-    content: ""
-  });
-  const [notes, setNotes] = useState([]);
-
-  function addNote() {
-    console.log(note);
-    setNotes(prevNotes => {
-      return [...prevNotes, note]
-    });
-
-    setNote({
-      title: "",
-      content: ""
-    });
-  }
-
-  function editNote(note) {
-    setNote({
-      id: note.id,
-      title: note.title,
-      content: note.content
-    });
-  }
-
-  function deleteNote(id) {
-    setNotes(prevNotes => {
-      return prevNotes.filter((noteItem, index) => {
-        return index !== id;
-      });
-    })
-  }
 
   return (
     <div className="App" style={{ position: 'relative', minHeight: '100vh' }}>
