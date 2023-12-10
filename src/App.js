@@ -5,7 +5,6 @@ import Note from "./components/Note";
 import Footer from "./components/Footer";
 
 function App() {
-  const [button, setButton] = useState("Add");
   const [note, setNote] = useState({
     id: undefined,
     title: "",
@@ -31,7 +30,6 @@ function App() {
       title: note.title,
       content: note.content
     });
-    setButton("Update");
   }
 
   function deleteNote(id) {
@@ -39,23 +37,13 @@ function App() {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
-    });
-  }
-
-  function updateNote() {
-    notes[note.id].title = note.title;
-    notes[note.id].content = note.content;
-    setButton("Add");
-    setNote({
-      title: "",
-      content: ""
-    });
+    })
   }
 
   return (
     <div className="App" style={{ position: 'relative', minHeight: '100vh' }}>
       <Header></Header>
-      <CreateArea setNote={setNote} note={note} onAdd={addNote} onUpdate={updateNote} button={button}></CreateArea>
+      <CreateArea setNote={setNote} note={note} onAdd={addNote}></CreateArea>
       <div className="row align-items-start" style={{ width: '98%', margin: '0 1%' }}>
         {
           notes.map((note, index) => {
