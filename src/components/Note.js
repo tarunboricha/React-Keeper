@@ -2,7 +2,7 @@ import React from "react";
 
 function Note({ title, content }) {
     return (
-        <div class="note col-sm-3" style={{width:'23%', maxWidth:'100%'}}>
+        <div class="col-sm-3 note">
         <h1> {title} </h1>
         <p> {content} </p>
         <button> Update </button>

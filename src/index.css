@@ -70,6 +70,7 @@
   border-radius: 7px;
   box-shadow: 0 2px 5px #ccc;
   margin: 2% 1%;
+  width: 23%;
 }
 
 .note h1 {
@@ -107,4 +108,42 @@
 .footer a {
   text-decoration: none;
   color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    height: 10vh;
+    padding: 0 6%;
+  }
+  .header-item {
+    display: flex;
+    width: 8rem;
+  }
+  .note{
+    width: 47%;
+  }
+  .create-area{
+    width: 75%;
+    padding: 3%;
+    margin-bottom: 8vh;
+  }
+  .create-area input {
+    font-size: 1.3rem;
+  }
+  .create-area textarea{
+    font-size: 1rem;
+  }
+  .note button {
+    font-size: 0.5rem;
+  }
+  .note {
+    padding: 3%;
+    padding-bottom: 2%;
+  }
+  .note p {
+    font-size: small;
+  }
+  .note h1 {
+    font-size: medium;
+  }
 }

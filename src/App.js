@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../src/App.css"
 import Header from "./components/Header"
 import CreateArea from "./components/CreateArea";
 import Note from "./components/Note";
@@ -13,12 +14,12 @@ const addNote = (newNote) => {
 }; 
 
   return (
-    <div className="App" style={{position:'relative', minHeight:'100vh'}}>
+    <div className="App">
       <Header></Header>
 
       <CreateArea onAdd={addNote}> </CreateArea>
 
-      <div className="row align-items-start" style={{ width: '98%', margin: '0 1%'}}>
+      <div className="note-container row align-items-start">
       {notes.map((note, index) => (
         <Note key={index} title={note.title} content={note.content} />
       ))}
