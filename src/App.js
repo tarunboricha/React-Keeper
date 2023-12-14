@@ -13,18 +13,18 @@ const addNote = (newNote) => {
 }; 
 
   return (
-    <div className="App">
+    <div className="App" style={{position:'relative', minHeight:'100vh'}}>
       <Header></Header>
 
       <CreateArea onAdd={addNote}> </CreateArea>
 
-      <div className="row align-item-start" style={{ width: '98%', margin: '0 1%', minHeight: '23vh' }}>
+      <div className="row align-items-start" style={{ width: '98%', margin: '0 1%'}}>
       {notes.map((note, index) => (
         <Note key={index} title={note.title} content={note.content} />
       ))}
       </div>
            
-      <Footer></Footer>
+      <Footer notes={notes}></Footer>
     </div>
   );
 }
