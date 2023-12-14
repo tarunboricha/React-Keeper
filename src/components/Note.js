@@ -1,14 +1,13 @@
 import React from "react";
 
-function Note() {
-
+function Note({ title, content }) {
     return (
-        <div className="col-sm-3 note" style={{ width: '23%', maxWidth: '100%' }}>
-            <h1>This is title</h1>
-            <p>Hello!! This is content of note....</p>
-            <button>Edit</button>
-            <button>Delete</button>
-        </div>
+        <div class="note col-sm-3" style={{width:'23%', maxWidth:'100%'}}>
+        <h1> {title} </h1>
+        <p> {content} </p>
+        <button> Update </button>
+        <button> Delete </button>
+    </div>
     );
 };
 
