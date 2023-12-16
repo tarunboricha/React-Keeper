@@ -1,15 +1,15 @@
-.App{
+.App {
     position: relative;
     min-height: 100vh;
 }
 
-.App .note-container{
+.App .note-container {
     width: 98%;
     margin: 0% 1%;
 }
 
 @media only screen and (max-width: 600px) {
-    .App .note-container{
+    .App .note-container {
         margin: 0% 2%;
     }
 }

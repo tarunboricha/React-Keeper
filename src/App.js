@@ -6,12 +6,12 @@ import Note from "./components/Note";
 import Footer from "./components/Footer";
 
 function App() {
-  
-const [notes, setNotes] = useState([]);
 
-const addNote = (newNote) => {
-  setNotes(prevNotes => [...prevNotes, newNote]);
-}; 
+  const [notes, setNotes] = useState([]);
+
+  const addNote = (newNote) => {
+    setNotes(prevNotes => [...prevNotes, newNote]);
+  };
 
   return (
     <div className="App">
@@ -20,11 +20,11 @@ const addNote = (newNote) => {
       <CreateArea onAdd={addNote}> </CreateArea>
 
       <div className="note-container row align-items-start">
-      {notes.map((note, index) => (
-        <Note key={index} title={note.title} content={note.content} />
-      ))}
+        {notes.map((note, index) => (
+          <Note key={index} title={note.title} content={note.content} />
+        ))}
       </div>
-           
+
       <Footer notes={notes}></Footer>
     </div>
   );
