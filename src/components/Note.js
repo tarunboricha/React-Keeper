@@ -5,7 +5,7 @@ function Note({ title, content }) {
         <div class="col-sm-3 note">
             <h1> {title} </h1>
             <p> {content} </p>
-            <button> Update </button>
+            <button> Edit </button>
             <button> Delete </button>
         </div>
     );
