@@ -11,7 +11,7 @@ function Header(props) {
     }, []);
 
     function logout() {
-        localStorage.removeItem('user');
+        localStorage.removeItem('/React-Keeper');
         setUsername(undefined);
         props.logout();
     }
@@ -22,7 +22,7 @@ function Header(props) {
             <div className="header-item">
                 <h5 onClick={() => {
                     if (!username) {
-                        nav('/user')
+                        nav('/React-Keeper/user')
                     }
                 }}>{username ? username : "User"}</h5>
                 <h5 onClick={() => {

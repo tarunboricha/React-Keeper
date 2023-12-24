@@ -31,7 +31,7 @@ const HomeScreen = () => {
             setisSpinner(true);
             user = JSON.parse(user)[0].userID;
             setUserid(user);
-            const url = `https://16f4-103-250-162-221.ngrok-free.app/notes/${user}`;
+            const url = `https://e12f-103-250-162-221.ngrok-free.app/notes/${user}`;
             axios.get(url, { headers })
                 .then((response) => {
                     setisSpinner(false);
@@ -64,7 +64,7 @@ const HomeScreen = () => {
             setisSpinner(true);
             note.userID = userid;
 
-            const url = "https://16f4-103-250-162-221.ngrok-free.app/notes";
+            const url = "https://e12f-103-250-162-221.ngrok-free.app/notes";
 
             axios.post(url, note, { headers })
                 .then((response) => {
@@ -86,7 +86,7 @@ const HomeScreen = () => {
     function loadnotes() {
         setNotes([]);
         setisSpinner(true);
-        const url = `https://16f4-103-250-162-221.ngrok-free.app/notes/${userid}`;
+        const url = `https://e12f-103-250-162-221.ngrok-free.app/notes/${userid}`;
 
         axios.get(url, { headers })
             .then((response) => {
@@ -102,7 +102,7 @@ const HomeScreen = () => {
         if (userid) {
             setisSpinner(true);
             setNotes([]);
-            const url = "https://16f4-103-250-162-221.ngrok-free.app/notes/" + id;
+            const url = "https://e12f-103-250-162-221.ngrok-free.app/notes/" + id;
 
             axios.delete(url, { headers })
                 .then((response) => {
@@ -142,7 +142,7 @@ const HomeScreen = () => {
         if (userid) {
             setNotes([]);
             setisSpinner(true);
-            const url = "https://16f4-103-250-162-221.ngrok-free.app/notes";
+            const url = "https://e12f-103-250-162-221.ngrok-free.app/notes";
 
             axios.put(url, note, { headers })
                 .then((response) => {

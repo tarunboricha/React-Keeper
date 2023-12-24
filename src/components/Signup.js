@@ -50,7 +50,7 @@ function SignUp(props) {
     }
 
     function submit() {
-        const url = "https://16f4-103-250-162-221.ngrok-free.app/users";
+        const url = "https://e12f-103-250-162-221.ngrok-free.app/users";
         if (signupdetail.otp === signupdetail.userotp) {
             axios.post(url, signupdetail, {headers})
                 .then((response) => {

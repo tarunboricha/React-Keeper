@@ -12,7 +12,7 @@ const UserScreen = () => {
         // console.log('user effect called');
         let user = localStorage.getItem('user');
         if (user) {
-            nav('/')
+            nav('/React-Keeper')
         }
     }, [nav]);
 

@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<HomeScreen></HomeScreen>} ></Route>
-        <Route path="/user" element={<UserScreen></UserScreen>} ></Route>
+        <Route path="/React-Keeper" element={<HomeScreen></HomeScreen>} ></Route>
+        <Route path="/React-Keeper/user" element={<UserScreen></UserScreen>} ></Route>
       </Routes>
     </BrowserRouter>
   );
