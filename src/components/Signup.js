@@ -35,7 +35,7 @@ function SignUp(props) {
     function generateOtp() {
         setisDanger(false);
         setMessage("Please wait your OTP is generating...")
-        const url = "http://localhost:5001";
+        const url = "https://e12f-103-250-162-221.ngrok-free.app";
 
         axios.post(`${url}/sendEmail`, signupdetail, {headers}).then((response) => {
             // console.log(response);
