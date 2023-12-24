@@ -53,7 +53,7 @@ const HomeScreen = () => {
     }, []);
 
     useEffect(() => {
-        if (notes.length) {
+        if (notes.length && !userid) {
             localStorage.setItem('notes', JSON.stringify(notes));
         }
     }, [notes]);

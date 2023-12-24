@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Spinner from 'react-bootstrap/Spinner';
 import "../css/signin.css"
 
 function SignUp(props) {
@@ -8,6 +9,7 @@ function SignUp(props) {
         'Content-Type': 'application/json',
     };
     const [isdanger, setisDanger] = useState(false);
+    const [isSpinner, setisSpinner] = useState(false);
     const [message, setMessage] = useState("");
     const [isOtp, setisOtp] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -33,12 +35,22 @@ function SignUp(props) {
     }
 
     function generateOtp() {
+        if (signupdetail.email === "" || signupdetail.password === "" || signupdetail.firstname === "" || signupdetail.lastname === "") {
+            setMessage("Fields are Empty");
+            setisDanger(true);
+            setTimeout(() => {
+                setMessage("");
+            }, 2000);
+            return;
+        }
         setisDanger(false);
+        setisSpinner(true);
         setMessage("Please wait your OTP is generating...")
         const url = "https://e12f-103-250-162-221.ngrok-free.app";
 
-        axios.post(`${url}/sendEmail`, signupdetail, {headers}).then((response) => {
+        axios.post(`${url}/sendEmail`, signupdetail, { headers }).then((response) => {
             // console.log(response);
+            setisSpinner(false);
             setisOtp(true);
             signupdetail.otp = response.data.otp;
             setMessage("Please enter the code sent to " + signupdetail.email);
@@ -52,8 +64,11 @@ function SignUp(props) {
     function submit() {
         const url = "https://e12f-103-250-162-221.ngrok-free.app/users";
         if (signupdetail.otp === signupdetail.userotp) {
-            axios.post(url, signupdetail, {headers})
+            setisSpinner(true);
+            setMessage("Please wait...");
+            axios.post(url, signupdetail, { headers })
                 .then((response) => {
+                    setisSpinner(false);
                     setMessage("Signup suceessfully!!..");
                     setTimeout(() => {
                         showSignin();
@@ -82,7 +97,10 @@ function SignUp(props) {
     return (
         <div>
             <div className="con">
-                <p style={{ textAlign: 'center', color: isdanger ? 'red' : 'green' }}>{message}</p>
+                <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                    {isSpinner ? <Spinner animation="border" size="sm" /> : ""}
+                    <p style={{ textAlign: 'center', color: isdanger ? 'red' : 'green', margin:'0' }}>{message}</p>
+                </div>
                 <div className="outsidediv">
                     <div className="containerr">
                         <div className="headerr">

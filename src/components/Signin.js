@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Spinner from 'react-bootstrap/Spinner';
 import "../css/signin.css"
 
 function Signin(props) {
@@ -9,6 +10,7 @@ function Signin(props) {
         'Content-Type': 'application/json',
     };
     const nav = useNavigate();
+    const [isSpinner, setisSpinner] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [formmessage, setFormmessage] = useState("");
     const [signindetail, updateSignin] = useState({
@@ -46,6 +48,8 @@ function Signin(props) {
     }
 
     function signin() {
+        if(isSpinner)
+            return;
         if (signindetail.email === "" || signindetail.password === "") {
             setFormmessage("Fields are Empty");
             setTimeout(() => {
@@ -53,9 +57,11 @@ function Signin(props) {
             }, 2000);
             return;
         }
+        setisSpinner(true);
         const url = `https://e12f-103-250-162-221.ngrok-free.app/users/${signindetail.email}/${signindetail.password}`;
         axios.get(url, {headers})
             .then((response) => {
+                setisSpinner(false);
                 if (response && response.data && response.data.length) {
                     localStorage.setItem('user', JSON.stringify(response.data));
                     document.getElementById("formmessage").style.color = "green"
@@ -83,7 +89,10 @@ function Signin(props) {
         <div>
             <div className="con">
                 <div className="outsidediv">
-                    <p id="formmessage" style={{ color: 'red', textAlign: 'center' }}>{formmessage}</p>
+                    <div style={{display:'flex', justifyContent:'center'}}>
+                        {isSpinner ? <div><Spinner animation="border" size="sm" /> Please wait</div> : ""}
+                        <p id="formmessage" style={{ color: 'red', textAlign: 'center' }}>{formmessage}</p>
+                    </div>
                     <div className="containerr">
                         <div className="headerr">
                             <div className="headersub">Sign in</div>
