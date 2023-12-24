@@ -84,7 +84,10 @@
 .note p {
   font-size: 1.1em;
   margin-bottom: 10px;
+  text-align: justify;
   text-wrap: wrap;
+  max-height: 150px;
+  overflow:auto;
 }
 
 .note button {
@@ -102,7 +105,7 @@
   position: absolute;
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   background-color: #f5ba13;
   height: 2.5rem;

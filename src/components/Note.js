@@ -1,12 +1,18 @@
 import React from "react";
 
-function Note({ title, content }) {
+const Note = (props) => {
+    const deletenote = () => {
+        props.onDelete(props.id);
+    }
+    const editenote = () => {
+        props.onEdit(props.title, props.content, props.id);
+    }
     return (
         <div class="col-sm-3 note">
-            <h1> {title} </h1>
-            <p> {content} </p>
-            <button> Edit </button>
-            <button> Delete </button>
+            <h1> {props.title} </h1>
+            <p> {props.content} </p>
+            <button onClick={deletenote}>Delete</button>
+            <button onClick={editenote}>Edit</button>
         </div>
     );
 };
