@@ -1,15 +1,15 @@
-.App {
+.home-page {
     position: relative;
     min-height: 100dvh;
 }
 
-.App .note-container {
+.home-page .note-container {
     width: 98%;
     margin: 0% 1%;
 }
 
 @media only screen and (max-width: 600px) {
-    .App .note-container {
+    .home-page .note-container {
         margin: 0% 2%;
     }
 }

@@ -35,7 +35,7 @@ const CreateArea = (props) => {
     }
 
     return (
-        <div class="create-area">
+        <div className="create-area">
             <input onChange={handleChange} name="title" value={props.note.title} type="text" placeholder="Title" />
             <textarea onChange={handleChange} value={props.note.content} placeholder="Take a note..." name="content" rows="3"></textarea>
             <button style={{ width: props.button === "Add" ? "2.8rem" : "4rem", height: props.button === "Add" ? "2.8rem" : "4rem" }} onClick={submit}>{props.button}</button>
