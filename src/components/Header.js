@@ -18,7 +18,7 @@ function Header(props) {
 
     return (
         <div className="header">
-            <h1 onClick={() => { nav('/') }}>Keeper</h1>
+            <h1 onClick={() => { nav('/React-Keeper') }}>Keeper</h1>
             <div className="header-item">
                 <h5 onClick={() => {
                     if (!username) {

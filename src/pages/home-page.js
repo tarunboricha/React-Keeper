@@ -168,7 +168,7 @@ const HomeScreen = () => {
     function logout() {
         setUserid(undefined);
         setTimeout(() => {
-            localStorage.removeItem('notes');
+            localStorage.removeItem('user');
             setNotes([]);
         }, 1);
     }
