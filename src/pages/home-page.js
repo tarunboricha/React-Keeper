@@ -8,12 +8,11 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
     const headers = {
         'ngrok-skip-browser-warning': 'any_value_you_want',
         'Content-Type': 'application/json',
     };
-    const [message, setMessage] = useState("");
     const [iserror, setIserror] = useState(false);
     const [userid, setUserid] = useState(undefined);
     const [isSpinner, setisSpinner] = useState(false);
@@ -185,7 +184,7 @@ const HomeScreen = () => {
 
     return (
         <div className="home-page">
-            <Header logout={logout} ></Header>
+            <Header logout={logout} setTemp={props.setTemp} ></Header>
 
             <CreateArea onAdd={addNote} onUpdate={update} note={note} setNote={setNote} button={buttonname}> </CreateArea>
             {isSpinner ? <div style={{display:'flex', justifyContent:'center'}}>

@@ -4,7 +4,7 @@ import Signin from "../components/Signin";
 import SignUp from "../components/Signup";
 import Header from "../components/Header";
 
-const UserScreen = () => {
+const UserScreen = (props) => {
     const nav = useNavigate();
     const [check, setCheck] = useState(true);
 
@@ -25,7 +25,7 @@ const UserScreen = () => {
     }
     return (
         <div>
-            <Header></Header>
+            <Header setTemp={props.setTemp}></Header>
             {check ? <div><Signin signup={showSignup}></Signin></div> : ''}
             {!check ? <div><SignUp signin={showSignin}></SignUp></div> : ''}
         </div>
