@@ -66,7 +66,7 @@ function Signin(props) {
                     setFormmessage("Sign in successfully!!..")
                     setTimeout(() => {
                         props.setTemp(true);
-                    }, 1500);
+                    }, 500);
                 }
                 else {
                     setisSpinner(false);
