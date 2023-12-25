@@ -46,7 +46,7 @@ function SignUp(props) {
         setisDanger(false);
         setisSpinner(true);
         setMessage("Please wait your OTP is generating...")
-        const url = "https://e12f-103-250-162-221.ngrok-free.app";
+        const url = "https://e209-103-250-162-221.ngrok-free.app";
 
         axios.post(`${url}/sendEmail`, signupdetail, { headers }).then((response) => {
             // console.log(response);
@@ -62,7 +62,7 @@ function SignUp(props) {
     }
 
     function submit() {
-        const url = "https://e12f-103-250-162-221.ngrok-free.app/users";
+        const url = "https://e209-103-250-162-221.ngrok-free.app/users";
         if (signupdetail.otp === signupdetail.userotp) {
             setisSpinner(true);
             setMessage("Please wait...");
