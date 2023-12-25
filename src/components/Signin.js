@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from 'react-bootstrap/Spinner';
 import "../css/signin.css"
@@ -9,7 +8,6 @@ function Signin(props) {
         'ngrok-skip-browser-warning': 'any_value_you_want',
         'Content-Type': 'application/json',
     };
-    const nav = useNavigate();
     const [isSpinner, setisSpinner] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [formmessage, setFormmessage] = useState("");
@@ -67,7 +65,7 @@ function Signin(props) {
                     document.getElementById("formmessage").style.color = "green"
                     setFormmessage("Sign in successfully!!..")
                     setTimeout(() => {
-                        nav("/React-Keeper");
+                        props.setTemp(true);
                     }, 1500);
                 }
                 else {
