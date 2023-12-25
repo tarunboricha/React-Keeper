@@ -71,6 +71,7 @@ function Signin(props) {
                     }, 1500);
                 }
                 else {
+                    setisSpinner(false);
                     setFormmessage("Email or password is incorrect");
                     setTimeout(() => {
                         setFormmessage("");
@@ -78,6 +79,7 @@ function Signin(props) {
                 }
             })
             .catch((error) => {
+                setisSpinner(false);
                 setFormmessage("Server is down please try again later");
                 setTimeout(() => {
                     setFormmessage("");

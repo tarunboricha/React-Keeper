@@ -13,6 +13,8 @@ const HomeScreen = () => {
         'ngrok-skip-browser-warning': 'any_value_you_want',
         'Content-Type': 'application/json',
     };
+    const [message, setMessage] = useState("");
+    const [iserror, setIserror] = useState(false);
     const [userid, setUserid] = useState(undefined);
     const [isSpinner, setisSpinner] = useState(false);
     const [buttonname, updateButton] = useState("Add");
@@ -35,13 +37,13 @@ const HomeScreen = () => {
             axios.get(url, { headers })
                 .then((response) => {
                     setisSpinner(false);
-                    console.log("TARUN");
-                    console.log(response);
                     if (response.data.length)
                         setNotes(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
+                    setisSpinner(false);
+                    setIserror(true);
                 })
         }
         else {
@@ -74,6 +76,8 @@ const HomeScreen = () => {
                 })
                 .catch((error) => {
                     console.log(error);
+                    setIserror(true);
+                    setisSpinner(false);
                 })
         }
         else {
@@ -95,6 +99,8 @@ const HomeScreen = () => {
             })
             .catch((error) => {
                 console.log(error);
+                setIserror(true);
+                setisSpinner(false);
             })
     }
 
@@ -110,6 +116,8 @@ const HomeScreen = () => {
                     loadnotes();
                 })
                 .catch((error) => {
+                    setIserror(true);
+                    setisSpinner(false);
                     // console.log(error);
                 })
         }
@@ -150,6 +158,8 @@ const HomeScreen = () => {
                     loadnotes();
                 })
                 .catch((error) => {
+                    setIserror(true);
+                    setisSpinner(false);
                     // console.log(error);
                 })
         }
@@ -184,6 +194,7 @@ const HomeScreen = () => {
                     <span style={{ color: 'white' }}>Loading...</span>
                 </Button>
             </div> : <div className="note-container row align-items-start">
+                {iserror ? <h6 style={{textAlign:'center', color:'red'}}>Server is down try again later</h6> : ""}
                 {notes.map((note, index) => (
                     <Note
                         key={index}

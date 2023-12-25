@@ -8,7 +8,6 @@ function SignUp(props) {
         'ngrok-skip-browser-warning': 'any_value_you_want',
         'Content-Type': 'application/json',
     };
-    const [isdanger, setisDanger] = useState(false);
     const [isSpinner, setisSpinner] = useState(false);
     const [message, setMessage] = useState("");
     const [isOtp, setisOtp] = useState(false);
@@ -36,39 +35,65 @@ function SignUp(props) {
 
     function generateOtp() {
         if (signupdetail.email === "" || signupdetail.password === "" || signupdetail.firstname === "" || signupdetail.lastname === "") {
+            document.getElementById("signupmsg").style.color = 'red';
             setMessage("Fields are Empty");
-            setisDanger(true);
             setTimeout(() => {
                 setMessage("");
             }, 2000);
             return;
         }
-        setisDanger(false);
+        document.getElementById("signupmsg").style.color = 'black';
+        setMessage("Please wait..");
         setisSpinner(true);
-        setMessage("Please wait your OTP is generating...")
         const url = "https://e209-103-250-162-221.ngrok-free.app";
-
-        axios.post(`${url}/sendEmail`, signupdetail, { headers }).then((response) => {
-            // console.log(response);
-            setisSpinner(false);
-            setisOtp(true);
-            signupdetail.otp = response.data.otp;
-            setMessage("Please enter the code sent to " + signupdetail.email);
-        }).catch((error) => {
-            // console.log(error);
-            setMessage("OTP failed please try again...");
-            setisDanger(true);
-        })
+        let emailAlreadyRegistered = false;
+        axios.get(`${url}/users/${signupdetail.email}`, { headers })
+            .then((response) => {
+                setisSpinner(false);
+                if (response && response.data && response.data.length) {
+                    document.getElementById("signupmsg").style.color = 'red';
+                    setMessage("Email is already registered");
+                    emailAlreadyRegistered = true;
+                }
+            })
+            .catch((error) => {
+                setisSpinner(false);
+                document.getElementById("signupmsg").style.color = 'red';
+                setMessage("Server is down please try again later");
+                emailAlreadyRegistered = true;
+                setTimeout(() => {
+                    setMessage("");
+                }, 2000);
+            }).then(() => {
+                if (!emailAlreadyRegistered) {
+                    document.getElementById("signupmsg").style.color = 'green';
+                    setMessage("Please wait your OTP is generating...")
+                    axios.post(`${url}/sendEmail`, signupdetail, { headers }).then((response) => {
+                        // console.log(response);
+                        setisOtp(true);
+                        signupdetail.otp = response.data.otp;
+                        document.getElementById("signupmsg").style.color = 'green';
+                        setMessage("Please enter the code sent to " + signupdetail.email);
+                    }).catch((error) => {
+                        // console.log(error);
+                        setisSpinner(false);
+                        document.getElementById("signupmsg").style.color = 'red';
+                        setMessage("OTP failed please try again...");
+                    })
+                }
+            })
     }
 
     function submit() {
         const url = "https://e209-103-250-162-221.ngrok-free.app/users";
         if (signupdetail.otp === signupdetail.userotp) {
             setisSpinner(true);
+            document.getElementById("signupmsg").style.color = 'black';
             setMessage("Please wait...");
             axios.post(url, signupdetail, { headers })
                 .then((response) => {
                     setisSpinner(false);
+                    document.getElementById("signupmsg").style.color = 'green';
                     setMessage("Signup suceessfully!!..");
                     setTimeout(() => {
                         showSignin();
@@ -76,20 +101,20 @@ function SignUp(props) {
                 })
                 .catch((error) => {
                     // console.log(error);
+                    setisSpinner(false);
+                    document.getElementById("signupmsg").style.color = 'red';
                     setMessage("Error");
-                    setisDanger(true);
                     setTimeout(() => {
                         setMessage("");
-                        setisDanger(false);
                     }, 2500);
                 })
         }
         else {
+            document.getElementById("signupmsg").style.color = 'red';
             setMessage("Please enter a valid otp");
-            setisDanger(true);
             setTimeout(() => {
+                document.getElementById("signupmsg").style.color = 'green';
                 setMessage("Please enter the code sent to " + signupdetail.email);
-                setisDanger(false);
             }, 2500);
         }
     }
@@ -97,9 +122,9 @@ function SignUp(props) {
     return (
         <div>
             <div className="con">
-                <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom:'5px' }}>
                     {isSpinner ? <Spinner animation="border" size="sm" /> : ""}
-                    <p style={{ textAlign: 'center', color: isdanger ? 'red' : 'green', margin:'0' }}>{message}</p>
+                    <p style={{ textAlign: 'center', margin: '0' }} id="signupmsg">{message}</p>
                 </div>
                 <div className="outsidediv">
                     <div className="containerr">
@@ -107,7 +132,7 @@ function SignUp(props) {
                             <div className="headersub">Sign up</div>
                             <div className="headersub">Create your account</div>
                         </div>
-                        <div className="name">
+                        {!isOtp ? <div className="name">
                             <div className="firstname">
                                 <div className="labl">First name</div>
                                 <div>
@@ -120,7 +145,7 @@ function SignUp(props) {
                                     <input type="text" onChange={getValueFromInput} id="lastname" />
                                 </div>
                             </div>
-                        </div>
+                        </div> : ""}
                         <div className="email">
                             <div className="labl">Email address</div>
                             <div>
