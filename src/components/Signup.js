@@ -45,7 +45,7 @@ function SignUp(props) {
         document.getElementById("signupmsg").style.color = 'black';
         setMessage("Please wait..");
         setisSpinner(true);
-        const url = "https://1b07-103-250-162-221.ngrok-free.app";
+        const url = "https://822f-2409-4041-d07-20f7-c90c-9fde-200-4c8e.ngrok-free.app";
         let emailAlreadyRegistered = false;
         axios.get(`${url}/users/${signupdetail.email}`, { headers })
             .then((response) => {
@@ -85,7 +85,7 @@ function SignUp(props) {
     }
 
     function submit() {
-        const url = "https://1b07-103-250-162-221.ngrok-free.app/users";
+        const url = "https://822f-2409-4041-d07-20f7-c90c-9fde-200-4c8e.ngrok-free.app/users";
         if (signupdetail.otp === signupdetail.userotp) {
             setisSpinner(true);
             document.getElementById("signupmsg").style.color = 'black';
