@@ -8,20 +8,20 @@ const CreateArea = (props) => {
     };
 
     const submit = () => {
-        if (props.note.title === "") {
-            document.querySelectorAll("input")[0].value = "Please add title here";
-            setTimeout(() => {
-                document.querySelectorAll("input")[0].value = "";
-            }, 1500);
-            return;
-        }
-        if (props.note.content === "") {
-            document.querySelectorAll("textarea")[0].value = "Please add content here";
-            setTimeout(() => {
-                document.querySelectorAll("textarea")[0].value = "";
-            }, 1500);
-            return;
-        }
+        // if (props.note.title === "") {
+        //     document.querySelectorAll("input")[0].value = "Please add title here";
+        //     setTimeout(() => {
+        //         document.querySelectorAll("input")[0].value = "";
+        //     }, 1500);
+        //     return;
+        // }
+        // if (props.note.content === "") {
+        //     document.querySelectorAll("textarea")[0].value = "Please add content here";
+        //     setTimeout(() => {
+        //         document.querySelectorAll("textarea")[0].value = "";
+        //     }, 1500);
+        //     return;
+        // }
         if (props.button === "Add") {
             props.onAdd();
             props.setNote({
