@@ -5,6 +5,7 @@ const Note = (props) => {
         props.onDelete(props.note_id);
     }
     const editenote = () => {
+        window.scrollTo(0, 0);
         props.onEdit(props.title, props.content, props.note_id);
     }
     return (

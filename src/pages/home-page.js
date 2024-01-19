@@ -32,7 +32,7 @@ const HomeScreen = (props) => {
             setisSpinner(true);
             user = JSON.parse(user)[0].userID;
             setUserid(user);
-            const url = `https://822f-2409-4041-d07-20f7-c90c-9fde-200-4c8e.ngrok-free.app/notes/${user}`;
+            const url = `https://a178-103-250-162-221.ngrok-free.app/notes/${user}`;
             axios.get(url, { headers })
                 .then((response) => {
                     setisSpinner(false);
@@ -57,7 +57,7 @@ const HomeScreen = (props) => {
         if (notes.length && !userid) {
             localStorage.setItem('notes', JSON.stringify(notes));
         }
-    }, [notes]);
+    }, [notes, userid]);
 
     function addNote() {
         if (userid) {
@@ -65,7 +65,7 @@ const HomeScreen = (props) => {
             setisSpinner(true);
             note.userID = userid;
 
-            const url = "https://822f-2409-4041-d07-20f7-c90c-9fde-200-4c8e.ngrok-free.app/notes";
+            const url = "https://a178-103-250-162-221.ngrok-free.app/notes";
 
             axios.post(url, note, { headers })
                 .then((response) => {
@@ -81,7 +81,7 @@ const HomeScreen = (props) => {
         }
         else {
             setNotes(prevNotes => {
-                return [...prevNotes, note];
+                return [note, ...prevNotes];
             });
         }
     }
@@ -89,7 +89,7 @@ const HomeScreen = (props) => {
     function loadnotes() {
         setNotes([]);
         setisSpinner(true);
-        const url = `https://822f-2409-4041-d07-20f7-c90c-9fde-200-4c8e.ngrok-free.app/notes/${userid}`;
+        const url = `https://a178-103-250-162-221.ngrok-free.app/notes/${userid}`;
 
         axios.get(url, { headers })
             .then((response) => {
@@ -107,7 +107,7 @@ const HomeScreen = (props) => {
         if (userid) {
             setisSpinner(true);
             setNotes([]);
-            const url = "https://822f-2409-4041-d07-20f7-c90c-9fde-200-4c8e.ngrok-free.app/notes/" + id;
+            const url = "https://a178-103-250-162-221.ngrok-free.app/notes/" + id;
 
             axios.delete(url, { headers })
                 .then((response) => {
@@ -149,7 +149,7 @@ const HomeScreen = (props) => {
         if (userid) {
             setNotes([]);
             setisSpinner(true);
-            const url = "https://822f-2409-4041-d07-20f7-c90c-9fde-200-4c8e.ngrok-free.app/notes";
+            const url = "https://a178-103-250-162-221.ngrok-free.app/notes";
 
             axios.put(url, note, { headers })
                 .then((response) => {
@@ -163,8 +163,11 @@ const HomeScreen = (props) => {
                 })
         }
         else {
-            notes[note.note_id].title = note.title;
-            notes[note.note_id].content = note.content;
+            setNotes(prevNotes => {
+                return [note, ...prevNotes.filter((noteItem, index) => {
+                    return index !== note.note_id;
+                })];
+            });
             localStorage.setItem('notes', JSON.stringify(notes));
         }
         updateButton("Add");
@@ -175,6 +178,7 @@ const HomeScreen = (props) => {
     }
 
     function logout() {
+        setIserror(false);
         setUserid(undefined);
         setTimeout(() => {
             localStorage.removeItem('user');
@@ -187,13 +191,13 @@ const HomeScreen = (props) => {
             <Header logout={logout} setTemp={props.setTemp} ></Header>
 
             <CreateArea onAdd={addNote} onUpdate={update} note={note} setNote={setNote} button={buttonname}> </CreateArea>
-            {isSpinner ? <div style={{display:'flex', justifyContent:'center'}}>
+            {isSpinner ? <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button variant="warning" disabled>
                     <Spinner animation="grow" size="sm" variant="light" />
                     <span style={{ color: 'white' }}>Loading...</span>
                 </Button>
             </div> : <div className="note-container row align-items-start">
-                {iserror ? <h6 style={{textAlign:'center', color:'red'}}>Server is down try again later</h6> : ""}
+                {iserror ? <h6 style={{ textAlign: 'center', color: 'red' }}>Server is down try again later</h6> : ""}
                 {notes.map((note, index) => (
                     <Note
                         key={index}
