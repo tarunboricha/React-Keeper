@@ -32,7 +32,7 @@ const HomeScreen = (props) => {
             setisSpinner(true);
             user = JSON.parse(user)[0].userID;
             setUserid(user);
-            const url = `https://a178-103-250-162-221.ngrok-free.app/notes/${user}`;
+            const url = `https://2f87-2401-4900-65cb-3ba5-209-64a3-654d-663f.ngrok-free.app/notes/${user}`;
             axios.get(url, { headers })
                 .then((response) => {
                     setisSpinner(false);
@@ -65,7 +65,7 @@ const HomeScreen = (props) => {
             setisSpinner(true);
             note.userID = userid;
 
-            const url = "https://a178-103-250-162-221.ngrok-free.app/notes";
+            const url = "https://2f87-2401-4900-65cb-3ba5-209-64a3-654d-663f.ngrok-free.app/notes";
 
             axios.post(url, note, { headers })
                 .then((response) => {
@@ -89,7 +89,7 @@ const HomeScreen = (props) => {
     function loadnotes() {
         setNotes([]);
         setisSpinner(true);
-        const url = `https://a178-103-250-162-221.ngrok-free.app/notes/${userid}`;
+        const url = `https://2f87-2401-4900-65cb-3ba5-209-64a3-654d-663f.ngrok-free.app/notes/${userid}`;
 
         axios.get(url, { headers })
             .then((response) => {
@@ -107,7 +107,7 @@ const HomeScreen = (props) => {
         if (userid) {
             setisSpinner(true);
             setNotes([]);
-            const url = "https://a178-103-250-162-221.ngrok-free.app/notes/" + id;
+            const url = "https://2f87-2401-4900-65cb-3ba5-209-64a3-654d-663f.ngrok-free.app/notes/" + id;
 
             axios.delete(url, { headers })
                 .then((response) => {
@@ -149,7 +149,7 @@ const HomeScreen = (props) => {
         if (userid) {
             setNotes([]);
             setisSpinner(true);
-            const url = "https://a178-103-250-162-221.ngrok-free.app/notes";
+            const url = "https://2f87-2401-4900-65cb-3ba5-209-64a3-654d-663f.ngrok-free.app/notes";
 
             axios.put(url, note, { headers })
                 .then((response) => {
@@ -182,6 +182,7 @@ const HomeScreen = (props) => {
         setUserid(undefined);
         setTimeout(() => {
             localStorage.removeItem('user');
+            localStorage.removeItem('notes');
             setNotes([]);
         }, 1);
     }
